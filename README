@@ -1,0 +1,37 @@
+CrashPlan Log Parser
+
+Author: Vegard Haugland
+
+Info:
+-----
+
+CrashPlan provides a great backup experience for your money, but you cannot
+access its API as long as you use the home version. This application parses the
+CrashPlan log file on your headless server and lets you print statistics and
+status information from your CrashPlan setup.
+
+With the status information available, it is quite easy to integrate this
+application into a Nagios setup for satisfying your surveillance needs!
+
+Usage:
+------
+
+1. Print list of jobs
+=====================
+
+$ python logparser.py stats
+
+Scan jobs:    73
+Backup jobs:  29
+Total jobs:  102
+
+Last job completed at 2014-04-12 03:01:00
+
+
+2. Print hours since last completed job
+=======================================
+
+$ python logparser.py hours
+
+13.8483333333
+

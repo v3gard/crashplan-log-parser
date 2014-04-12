@@ -1,5 +1,6 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
+""" model.py: part of crashplan-log-parser """
 
 import re
 import datetime
@@ -100,6 +101,7 @@ class BackupLogParser(object):
         # clear ignored and unhandled events
         self.matches = [x for x in self.matches if x.type not in (EventTypes.IgnoredEvent, EventTypes.UnknownEvent) ]
         
+        # start parsing events
         previousEventCount = -1
         currentEventCount = 0
         while (previousEventCount != currentEventCount):
@@ -133,15 +135,17 @@ class BackupLogParser(object):
             self.matches = [ x for x in self.matches if x != None ]
             currentEventCount = len(self.matches)
 
-    def _get_latest_job(self):
-        pass
-
-    def latest_completed_job_in_nagios_format(self):
+    def get_last_job(self):
         self._parse()
-        print "Jobs: %d" % len(self.jobs)
-        print " * Scan jobs: %d" % len([ x for x in self.jobs if x.type==JobTypes.ScanJob])
-        print " * Backup jobs: %d" % len([ x for x in self.jobs if x.type==JobTypes.BackupJob])
-        print " * Latest job completed at %s" % self.jobs[-1].eventStop.time_start
+        return self.jobs[-1]
+
+    def get_statistics(self):
+        self._parse()
+        print "  Scan jobs: %4d" % len([ x for x in self.jobs if x.type==JobTypes.ScanJob])
+        print "Backup jobs: %4d" % len([ x for x in self.jobs if x.type==JobTypes.BackupJob])
+        print " Total jobs: %4d" % len(self.jobs)
+        print ""
+        print "Last job completed at %s" % self.jobs[-1].eventStop.time_start
         # self._parse()
         # print "size: %d bytes" % self.logfile_size
         pass
