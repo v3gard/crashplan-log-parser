@@ -75,7 +75,7 @@ def main():
         print "Last job started %s and completed %s. Logged message was \"%s\"" % (job.eventStop.time_start, job.eventStop.time_start, job.eventStop.msg)
     if args[0] == "hours":
         job = blp.get_last_job()
-        print (datetime.now()-job.eventStop.time_start).seconds/(60.0*60)
+        print (datetime.now()-job.eventStop.time_start).seconds/(60*60)
 
 
 
