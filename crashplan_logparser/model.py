@@ -5,7 +5,7 @@
 import re
 import datetime
 
-RE_BACKUP_EVENT = re.compile(r"^[A-Z]\s([0-9\/\s:PAM]+)\s\[Standard\]\s+?(.*)")
+RE_BACKUP_EVENT = re.compile(r"^[A-Z]\s([0-9\/\s:PAM]+)\s\[[a-zA-Z0-9 ]+\]\s+?(.*)")
 RE_BACKUP_START_EVENT = re.compile(r"Starting backup to CrashPlan Central: [0-9,]+ files? \([KMGTB0-9\.]+\) to back up")
 RE_BACKUP_STOP_EVENT = re.compile(r"Stopped backup to CrashPlan Central in [0-9\.]+ [a-z]+: [0-9,]+ files? \([KMGTB0-9\.]+\) backed up, [KMGTB0-9\.]+ encrypted and sent @ [KMGTbps0-9]+")
 RE_BACKUP_COMPLETED_EVENT = re.compile(r"Completed backup to CrashPlan Central in [<\s0-9\.]+ [a-z]+: [0-9\,]+ files? \([KMGTB0-9\.]+\) backed up, [KMGTB0-9\.]+ encrypted and sent")
